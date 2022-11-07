@@ -3,7 +3,7 @@
 Let's Begin..........
 
 1. [Install Kafka](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
-2. Sample `ecommerce_data.csv` file content
+2. Sample `ecommerce_data.csv` file content. [Original File](https://www.kaggle.com/datasets/jyesawtellrickson/ecommerce-bookings-data/download)
 <pre>
 date,product_id,city_id,orders
 2019-12-16,1897,26,2
