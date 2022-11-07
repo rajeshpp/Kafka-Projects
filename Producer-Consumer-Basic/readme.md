@@ -4,7 +4,7 @@ Let's Begin..........
 
 1. [Install Kafka](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
 2. Sample Producer code
-'''Python3
+<pre>
 import time
 from kafka import KafkaProducer
 import os
@@ -25,9 +25,9 @@ for file in os.listdir('./data'):
             print(metadata.topic)
             print(metadata.partition)
             time.sleep(1)
-'''
+</pre>
 3. Sample Consumer Code
-'''Python3
+<pre>
 from kafka import KafkaConsumer
 import sys
 
@@ -42,4 +42,4 @@ try:
         print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key,message.value))
 except KeyboardInterrupt:
     sys.exit()
-'''
+</pre>
