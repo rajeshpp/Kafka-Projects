@@ -45,7 +45,6 @@ consumer = KafkaConsumer(topicName,bootstrap_servers = bootstrap_servers, auto_o
 try:
     for message in consumer:
         msg = json.loads(message.value)
-        print(msg)
         print(msg['date'], msg['product_id'], msg['city_id'], msg['orders'])
 except KeyboardInterrupt:
     sys.exit()
