@@ -1,5 +1,6 @@
 # Producer-Consumer-Basic
 
+TechStack in this Tutorial: Kafka, mysql </br>
 Let's Begin..........
 
 1. [Install Kafka](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
