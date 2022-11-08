@@ -30,13 +30,30 @@ with open('ecommerce_data.csv') as f:
         print(content)
         ack = producer.send(topicName, content)
         metadata = ack.get()
-        time.sleep(2)
+        #time.sleep(2)
 </pre>
-4. Sample Consumer Code
+4. Install [mysql](https://dev.mysql.com/downloads/)
+5. Create DB, and required Table
+<pre>
+CREATE DATABASE Kafka;
+use Kafka;
+CREATE TABLE orders(date VARCHAR(20), product_id INTEGER(20), city_id INTEGER(20), orders INTEGER(20));
+</pre>
+6. Sample Consumer Code
 <pre>
 from kafka import KafkaConsumer
 import sys
 import json
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="XXXXXXXX",
+  database="Kafka"
+)
+
+mycursor = mydb.cursor()
 
 bootstrap_servers = ['localhost:9092']
 topicName = 'producer-consumer-demo'
@@ -45,7 +62,16 @@ consumer = KafkaConsumer(topicName,bootstrap_servers = bootstrap_servers, auto_o
 try:
     for message in consumer:
         msg = json.loads(message.value)
-        print(msg['date'], msg['product_id'], msg['city_id'], msg['orders'])
+        sql = "INSERT INTO orders(date, product_id, city_id, orders) VALUES (%s, %s, %s, %s)"
+        val = (msg['date'], int(msg['product_id']), int(msg['city_id']), int(msg['orders']))
+        print(val)
+        
+        mycursor.execute(sql, val)
+        mydb.commit()
+    # disconnecting from server
+    mydb.close()
 except KeyboardInterrupt:
+    # disconnecting from server
+    mydb.close()
     sys.exit()
 </pre>
