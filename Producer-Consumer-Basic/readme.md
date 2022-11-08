@@ -75,3 +75,5 @@ except KeyboardInterrupt:
     mydb.close()
     sys.exit()
 </pre>
+7. Data inserted into Table after producer and consumer execution
+<img width="299" alt="image" src="https://user-images.githubusercontent.com/19406666/200472866-57178297-807a-4841-b85c-bfadf060a210.png">
