@@ -2,4 +2,4 @@
 
 **Durable**: Written to disk and replicated which helps for data availability even when there is a hardware failure.
 
-<img width="600" alt="image" src="https://user-images.githubusercontent.com/19406666/201483121-5087dad2-c63c-42a2-b813-4bfe661f4652.png">
+![Kafka](https://user-images.githubusercontent.com/19406666/201486000-2d4025d6-27a7-4429-980a-0d169def2e10.gif)
