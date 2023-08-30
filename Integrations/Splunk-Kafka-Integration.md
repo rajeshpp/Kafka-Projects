@@ -28,6 +28,34 @@ Doing all these steps is a time consuming process or it may fail in between due 
 
 ## Connection Establishment
 Next step is the establishment of connection between Splunk and Kafka by using kafka-connect-splunk. Follow [these](https://github.com/splunk/kafka-connect-splunk#quick-start) steps for establishing the connection.
+By using below command, created connector tasks
+```
+curl http://localhost:8083/connectors -X POST -H "Content-Type: application/json" -d '{
+    "name": "kafka-connect-splunk",
+    "config": {
+        "connector.class": "com.splunk.kafka.connect.SplunkSinkConnector",
+        "tasks.max": "3",
+        "splunk.indexes": "splunk_kafka_index",
+        "topics": "Splunk-Kafka-Topic",
+      "splunk.hec.uri": "http://localhost:8088",
+      "splunk.hec.token": "13d77f44-fa5e-4567-be89-8855ce11e618"
+    }
+}'
+```
+**Response**:
+```
+{"name":"kafka-connect-splunk","config":{"connector.class":"com.splunk.kafka.connect.SplunkSinkConnector","tasks.max":"3","splunk.indexes":"splunk_kafka_index","topics":"Splunk-Kafka-Topic","splunk.hec.uri":"http://localhost:8088","splunk.hec.token":"13d77f44-fa5e-4567-be89-8855ce11e618","name":"kafka-connect-splunk"},"tasks":[],"type":"sink"}
+```
 
 ## Pushing messages
 Now, let's push messages to the Splunk by using Splunk-Kafka Connect.
+```
+export TOKEN="13d77f44-fa5e-4567-be89-8855ce11e618"
+
+curl http://localhost:8088/services/collector/event -H "Authorization: Splunk $TOKEN" -d '{"event": { "stuff": "value" } }'
+=====================
+{"text":"Success","code":0}
+=============================
+
+curl http://localhost:8088/services/collector/event -H "Authorization: Splunk $TOKEN" -d '{"event": "Hello World!!"}
+```
