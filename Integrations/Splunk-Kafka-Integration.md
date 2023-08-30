@@ -21,3 +21,13 @@ Please follow [these](https://github.com/rajeshpp/Kafka-Projects/blob/main/Insta
 This is an optional step. Please download jdk8 and install it as it may be required for Splunk-Kafka connect.
 
 ## Splunk-Kafka Connect
+We need a jar file which helps us to establish the connection between Splunk and Kafka. For that purpose, we have to follow the steps mentioned at this [link](https://github.com/splunk/kafka-connect-splunk).
+Doing all these steps is a time consuming process or it may fail in between due to some other issues. Easy way is to download the jar file from this [link](https://github.com/splunk/kafka-connect-splunk/releases).
+
+<img width="213" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/27c1b04f-177a-476f-bdef-ca25837a969d">
+
+## Connection Establishment
+Next step is the establishment of connection between Splunk and Kafka by using kafka-connect-splunk. Follow [these](https://github.com/splunk/kafka-connect-splunk#quick-start) steps for establishing the connection.
+
+## Pushing messages
+Now, let's push messages to the Splunk by using Splunk-Kafka Connect.
