@@ -38,7 +38,7 @@ curl http://localhost:8083/connectors -X POST -H "Content-Type: application/json
         "splunk.indexes": "splunk_kafka_index",
         "topics": "Splunk-Kafka-Topic",
       "splunk.hec.uri": "http://localhost:8088",
-      "splunk.hec.token": "13d77f44-fa5e-4567-be89-8855ce11e618"
+      "splunk.hec.token": "$TOKEN"
     }
 }'
 ```
