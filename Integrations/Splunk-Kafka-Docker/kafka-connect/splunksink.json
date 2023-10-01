@@ -1,0 +1,14 @@
+{
+  "name": "splunk-sink",
+  "config": {
+    "connector.class": "com.splunk.kafka.connect.SplunkSinkConnector",
+    "tasks.max": "1",
+    "topics": "splunk_kafka_topic",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "splunk.indexes": "splunk_kafka_index",
+    "splunk.hec.uri": "https://localhost:8088",
+    "splunk.hec.token": "42d6115c-d6ac-4934-8db4-cf54691c4c5a",
+    "splunk.hec.ssl.validate.certs": false
+  }
+}
