@@ -23,6 +23,10 @@ The docker compose in this repository will create an environment that consists o
 
 # Starting the Docker environment
 
+Current Architecture:<br/>
+<img width="453" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/1b6d1a28-dcfd-4ad8-8811-23836944f366">
+
+
 To start the baseline tutorial environment execute the run the following command:
 
 ```
