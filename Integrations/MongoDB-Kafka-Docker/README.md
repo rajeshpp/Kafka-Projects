@@ -30,13 +30,18 @@ docker-compose up
 ```
 
 Now, go to ```mongo1``` container:
+<img width="455" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/87583798-0e8c-4dea-8f0a-947b90b2c5ff">
+
+Now check the status of sink:
+<img width="566" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/183467a5-537b-4799-bb9f-2808107422b3">
+
+Now, run python script to send messages to kafka and then to MongoDB:
+<img width="317" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/ba70d644-2c26-4233-bf3b-ad46aa3e0658">
+
+Let's check in mongoDB now:
+<img width="363" alt="image" src="https://github.com/rajeshpp/Kafka-Projects/assets/19406666/312e951a-760a-4327-b391-4edb92e2e4ce">
 
 
-To start an interactive shell, run the following command:
-
-```
-docker exec -it mongo1 /bin/bash
-```
 
 ## Shutting down the Tutorial environment
 
