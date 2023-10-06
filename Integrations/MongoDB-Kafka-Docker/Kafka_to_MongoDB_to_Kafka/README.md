@@ -37,6 +37,117 @@ To start an interactive shell, run the following command:
 ```
 docker exec -it mongo1 /bin/bash
 ```
+## Goal
+Now our goal is that:
+1. First we insert a record/collection into first instance of mongoDB {USE: `db.<collection>.insertOne()`}.
+2. Collection inserted into MongoDB will be sent as a message to Kafka Topic{USE: `MongoDB Kafka Source Connector`}.
+3. Messages from Kafka Topic will be send to the second & third mongoDB instances {USE: `MongoDB Kafka Sink Connector`}.
+
+### Architecture Flow
+![Architecture](images/flow.png)
+#### Step 1:
+On MongoDB first instance container, run the following:</br>
+```
+MongoDB Kafka Sandbox $pwd
+/tutorials/source_connector
+MongoDB Kafka Sandbox $cx simple_source_mongo1.json
+{
+  "name": "mongo-simple-source",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+    "connection.uri": "mongodb://mongo1",
+    "publish.full.document.only": "true",
+    "database": "Tutorial1",
+    "collection": "orders",
+    "name": "mongo-simple-source"
+  },
+  "tasks": [],
+  "type": "source"
+}
+```
+#### Step 2:
+Insert a document into `orders` collection in `Tutorial1` DataBase.
+```
+rs1 [direct: primary] test> use Tutorial1;
+switched to db Tutorial1
+rs1 [direct: primary] Tutorial1> db.orders.insertOne({'id':1, 'name':'Book'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("65200452634057331201d16e")
+}
+rs1 [direct: primary] Tutorial1> db.orders.find()
+[ { _id: ObjectId("65200452634057331201d16e"), id: 1, name: 'Book' } ]
+```
+#### Step 3:
+Now check the messages in the kafka topic. </br>
+```
+MongoDB Kafka Sandbox $kc Tutorial1.orders
+% Auto-selecting Consumer mode (use -P or -C to override)
+
+Partition: 0    Offset: 0
+
+Key (109 bytes):
+
+{"schema":{"type":"string","optional":false},"payload":"{\"_id\": {\"$oid\": \"65200452634057331201d16e\"}}"}
+
+Value (140 bytes):
+
+{"schema":{"type":"string","optional":false},"payload":"{\"_id\": {\"$oid\": \"65200452634057331201d16e\"}, \"id\": 1, \"name\": \"Book\"}"}
+```
+
+#### Step 4:
+Now, go to sencond or third instance of MongoDB shell.
+
+```
+rs2 [direct: primary] test> show dbs;
+admin    80.00 KiB
+config  164.00 KiB
+local   404.00 KiB
+```
+
+#### Step 5:
+Now create sink connector:
+```
+MongoDB Kafka Sandbox $pwd
+/tutorials/sink_connector
+MongoDB Kafka Sandbox $cx simple_sink2.json
+{
+  "name": "mongo-tutorial-sink2",
+  "config": {
+    "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+    "topics": "Tutorial1.orders",
+    "connection.uri": "mongodb://mongo2",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+    "database": "Tutorial1",
+    "collection": "orders",
+    "name": "mongo-tutorial-sink2"
+  },
+  "tasks": [],
+  "type": "sink"
+}
+```
+
+#### Step 6:
+Go to mongoDB shell and run the below commands:
+```
+rs2 [direct: primary] test> show dbs;
+Tutorial1   40.00 KiB
+admin       80.00 KiB
+config     244.00 KiB
+local      404.00 KiB
+rs2 [direct: primary] test> use Tutorial1;
+switched to db Tutorial1
+rs2 [direct: primary] Tutorial1> db.orders.find()
+[
+  {
+    _id: ObjectId("6520057c7e7aec62971bc720"),
+    schema: { optional: false, type: 'string' },
+    payload: '{"_id": {"$oid": "65200452634057331201d16e"}, "id": 1, "name": "Book"}'
+  }
+]
+```
 
 ## Shutting down the Tutorial environment
 
@@ -49,7 +160,6 @@ docker-compose -p mongo-kafka down --rmi 'all'
 
 ## References
 
-- [MongoDB Kafka Connector](https://docs.mongodb.com/kafka-connector/current/) online documentation.
+- [MongoDB Kafka Source Connector](https://www.mongodb.com/docs/kafka-connector/current/tutorials/source-connector/) online documentation.
 
-- [Connectors to Kafka](https://docs.confluent.io/home/connect/overview.html)
-- MongoDB Connector for Apache Kafka Tutorials (Link TBD)
+- [MongoDB Kafka Sink Connector](https://www.mongodb.com/docs/kafka-connector/current/tutorials/sink-connector)
