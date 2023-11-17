@@ -41,4 +41,18 @@ That will start MongoDB. To connect to that, we can either use `mongosh` to use 
 
 ![image](https://github.com/rajeshpp/Kafka-Projects/assets/19406666/def2fc27-629b-4871-b441-a6a6e22fde31)
 
+### Setup mongoDB-Kafka Connector
+To enable the communication between mongoDB and Kafka, we need to make lot of programming. But, that problem is solved by using Kafka-MongoDB Connector.
+
+Some helpful information about MongoDB-Kafka Connector [here](https://www.mongodb.com/products/integrations/kafka-connector)
+
+Download MongoDB-Kafka Connector from [here](https://github.com/mongodb/mongo-kafka/releases)
+
+To know more about Sink Connector, click [here](https://www.mongodb.com/docs/kafka-connector/current/sink-connector/)
+
+To know more about Source Connector, click [here](https://www.mongodb.com/docs/kafka-connector/current/source-connector/)
+
+Steps to be followed to use this fully:
+1. 
+
 
