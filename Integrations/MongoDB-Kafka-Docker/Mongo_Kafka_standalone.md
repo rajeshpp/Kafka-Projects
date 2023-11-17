@@ -26,3 +26,5 @@ Now download latest version of Kafka package from Apache Kafka Website. Here is 
 After downloading latest zip file, unzip it and use the shell scripts from bin folder for all the kafka operations.
 
 One more configuration change that is required as part of this is the uncomment `advertised.listeners=PLAINTEXT://localhost:9092` and the set the hostname to localhost or to the IP of that specific host. This change needs to be done in `config/server.properties`.
+
+Now, let's start Kafka by following the steps mentioned [here](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
