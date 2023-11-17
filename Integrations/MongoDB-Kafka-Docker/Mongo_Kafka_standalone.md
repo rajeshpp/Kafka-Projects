@@ -28,3 +28,17 @@ After downloading latest zip file, unzip it and use the shell scripts from bin f
 One more configuration change that is required as part of this is the uncomment `advertised.listeners=PLAINTEXT://localhost:9092` and the set the hostname to localhost or to the IP of that specific host. This change needs to be done in `config/server.properties`.
 
 Now, let's start Kafka by following the steps mentioned [here](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
+
+### Install MongoDB & Test MongoDB
+Now, let's install and do the setup to install mongoDB. As part of that, please follow the steps mentioned [here](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
+
+Before starting mongoDB, we need to create a folder as `mkdir -p /data/db`.
+
+After that, Run the command `mongod` or `systemctl start mongod`.
+
+That will start MongoDB. To connect to that, we can either use `mongosh` to use from CLI or, use `MongoDB Compass` to use from IDE.
+![image](https://github.com/rajeshpp/Kafka-Projects/assets/19406666/69aaf811-4e69-47bb-9c75-8f1184d1063b)
+
+![image](https://github.com/rajeshpp/Kafka-Projects/assets/19406666/def2fc27-629b-4871-b441-a6a6e22fde31)
+
+
