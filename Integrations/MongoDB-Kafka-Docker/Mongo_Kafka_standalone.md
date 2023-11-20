@@ -21,11 +21,15 @@ As part of this POC, I have used Ubuntu OS and here are the steps to install Jav
    - Install from deb file: `sudo dpkg -i jdk-21_linux-x64_bin.deb`
   
 ### Install/Setup Kafka & Test Kafka Connections
+Our requirement here is to setup a 3 node VM cluster. So, as part of that, follow the below basis steps first.
+
 Now download latest version of Kafka package from Apache Kafka Website. Here is the url: https://kafka.apache.org/downloads
 
 After downloading latest zip file, unzip it and use the shell scripts from bin folder for all the kafka operations.
 
-One more configuration change that is required as part of this is the uncomment `advertised.listeners=PLAINTEXT://localhost:9092` and the set the hostname to localhost or to the IP of that specific host. This change needs to be done in `config/server.properties`.
+To setup, 3 node VM cluster, we have to do some configuration settings in both `config/server.properties` and `config/zookeeper.properties` files.
+
+Follow the steps mentioned in these links for more help. [link1](https://www.clairvoyant.ai/blog/kafka-series-3.-creating-3-node-kafka-cluster-on-virtual-box) [link2](https://himanshu27.medium.com/kafka-cluster-setup-on-centos-server-3-nodes-a4f65775c045) [link3](https://www.conduktor.io/kafka/kafka-cluster-setup-overview/)
 
 Now, let's start Kafka by following the steps mentioned [here](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
 
