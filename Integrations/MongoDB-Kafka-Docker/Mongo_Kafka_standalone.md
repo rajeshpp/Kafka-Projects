@@ -29,6 +29,16 @@ One more configuration change that is required as part of this is the uncomment 
 
 Now, let's start Kafka by following the steps mentioned [here](https://github.com/rajeshpp/Kafka-Projects/blob/main/Installation/readme.md)
 
+##### In some cases, you may get Error with memory issues:
+```
+Java HotSpot(TM) 64-Bit Server VM warning: INFO: os::commit_memory(0x00000000c0000000, 1073741824, 0) failed; error='Not enough space' (errno=12)
+# There is insufficient memory for the Java Runtime Environment to continue.
+```
+Set below config, in those cases:
+
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+
+
 ### Install MongoDB & Test MongoDB
 Now, let's install and do the setup to install mongoDB. As part of that, please follow the steps mentioned [here](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/)
 
