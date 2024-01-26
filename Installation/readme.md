@@ -75,4 +75,9 @@ Let's Begin........
   rajesh@rajesh:~/Rajesh/Softwares/kafka_2.13-3.3.1$ <b>bin/kafka-console-consumer.sh --topic producer-consumer-demo --from-beginning --bootstrap-server localhost:9092</b>
   Hello
   </pre>
-  
+
+- <b>Step 8:</b>Get the number of messages in a topic
+  <pre>
+  rajesh@rajesh:~/Rajesh/Softwares/kafka_2.13-3.3.1$ <b>bin/kafka-run-class.sh kafka.tools.GetOffsetShell --topic producer-consumer-demo --bootstrap-server localhost:9092| awk -F  ":" '{sum += $3} END {print sum}'</b>
+  234
+  </pre>
