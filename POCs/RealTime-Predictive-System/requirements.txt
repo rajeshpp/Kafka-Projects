@@ -1,0 +1,7 @@
+pyspark
+mysql-connector-python
+psycopg2-binary
+kafka-python
+apache-airflow
+pandas
+scikit-learn
